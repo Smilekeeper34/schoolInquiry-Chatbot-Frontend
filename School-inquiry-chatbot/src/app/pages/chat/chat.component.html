@@ -1,0 +1,22 @@
+<div class="container d-flex justify-content-center">
+    <form [formGroup]="messageForm">
+        <div class="card mt-5">
+            <div class="d-flex flex-row justify-content-between p-3 adiv text-white">
+                <i class="fas fa-chevron-left"></i>
+                <span class="pb-3">MY SCHOOL </span>
+                <i class="fas fa-times"></i>
+            </div>
+        
+            <div class="d-flex flex-column p-3" *ngFor="let message of chatMessages">
+                <div [ngClass]="{'chat ml-2 p-3': message.type === 'sent', 'response ml-auto p-3': message.type === 'response'}">{{ message.content }}</div>
+            </div>
+        
+            <div class="form-group px-3">
+                <textarea class="form-control" rows="5" placeholder="Type your message" formControlName="userMessage"></textarea>
+                <button class="btn btn-primary mt-2" (click)="sendMessage()">Send</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+  
