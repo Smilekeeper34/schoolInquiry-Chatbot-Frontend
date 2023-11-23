@@ -1,22 +1,68 @@
-<div class="container d-flex justify-content-center">
-    <form [formGroup]="messageForm">
-        <div class="card mt-5">
-            <div class="d-flex flex-row justify-content-between p-3 adiv text-white">
-                <i class="fas fa-chevron-left"></i>
-                <span class="pb-3">MY SCHOOL </span>
-                <i class="fas fa-times"></i>
-            </div>
-        
-            <div class="d-flex flex-column p-3" *ngFor="let message of chatMessages">
-                <div [ngClass]="{'chat ml-2 p-3': message.type === 'sent', 'response ml-auto p-3': message.type === 'response'}">{{ message.content }}</div>
-            </div>
-        
-            <div class="form-group px-3">
-                <textarea class="form-control" rows="5" placeholder="Type your message" formControlName="userMessage"></textarea>
-                <button class="btn btn-primary mt-2" (click)="sendMessage()">Send</button>
-            </div>
-        </div>
-    </form>
-</div>
+<link
+  rel="stylesheet"
+  href="https://site-assets.fontawesome.com/releases/v6.2.1/css/all.css"
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
 
-  
+<img
+  id="backgroundimg"
+  src="https://img.freepik.com/free-photo/serious-african-american-student-studying-library_74855-1218.jpg?w=1380&t=st=1700731428~exp=1700732028~hmac=c77dd3f9735ef383c5dfc00ae2aba0dd7995965893d6adb18a1ebb2c447ca8ae"
+/>
+<div class="main">
+  <div class="header">
+    <i
+      style="cursor: pointer; display: flex; float: right"
+      class="fas fa-arrow-left"
+    ></i>
+    <!-- <div class="notifications"><b>3</b></div> -->
+    <div class="center">
+      <div>
+        <img
+          class="pfp"
+          src="https://img.freepik.com/free-photo/robot-with-books_1048-4551.jpg?w=740&t=st=1700731662~exp=1700732262~hmac=7ec0857fdb1b0da95f8a936b197ff5855839248a22c0235a3353a3d58bd8316e"
+        />
+        <p id="pfpname">KWEKWE POLY</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div style="padding: 11px">
+      <p>{{ currentDate | date: 'EEE, MMM d, y, h:mm a' }}</p>
+
+      <div class="msg-btn-holder">
+        <div class="receiver-msg msg-btn" *ngFor="let message of chatMessages">
+          <p *ngIf="message.type === 'bot'" class="bot-msg">
+            {{ message.content }}
+          </p>
+          <p *ngIf="message.type === 'user'" class="user-msg">
+            {{ message.content }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <form action="" [formGroup]="messageForm">
+      <div style="width: 100%; padding: 11px">
+        <input
+          placeholder="Message"
+          class="text-box"
+          formControlName="userMessage"
+          (keydown.enter)="sendMessage()"
+        />
+        <div class="send-ico">
+          <i
+            style="position: absolute"
+            class="fas fa-paper-plane"
+            (click)="sendMessage()"
+          ></i>
+        </div>
+      </div>
+    </form>
+    <!-- Loader -->
+    <div *ngIf="loading" class="loader"></div>
+  </div>
+</div>
