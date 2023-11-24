@@ -23,26 +23,24 @@
           src="https://img.freepik.com/free-photo/robot-with-books_1048-4551.jpg?w=740&t=st=1700731662~exp=1700732262~hmac=7ec0857fdb1b0da95f8a936b197ff5855839248a22c0235a3353a3d58bd8316e"
         />
         <p id="pfpname">KWEKWE POLY</p>
+        <p>{{ currentDate | date: 'EEE, MMM d, y, h:mm a' }}</p>
       </div>
     </div>
   </div>
 
-  <div class="content">
+  <div class="content" #msgContainer>
     <div style="padding: 11px">
-      <p>{{ currentDate | date: 'EEE, MMM d, y, h:mm a' }}</p>
-
+      
+  
       <div class="msg-btn-holder">
         <div class="receiver-msg msg-btn" *ngFor="let message of chatMessages">
-          <p *ngIf="message.type === 'bot'" class="bot-msg">
-            {{ message.content }}
-          </p>
-          <p *ngIf="message.type === 'user'" class="user-msg">
-            {{ message.content }}
-          </p>
+          <p *ngIf="message.type === 'bot'" class="bot-msg">{{ message.content }}</p>
+          <p *ngIf="message.type === 'user'" class="user-msg">{{ message.content }}</p>
         </div>
       </div>
     </div>
   </div>
+  
 
   <div class="footer">
     <form action="" [formGroup]="messageForm">

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ChatserviceService } from 'src/app/services/chatservice.service';
 
@@ -8,6 +8,8 @@ import { ChatserviceService } from 'src/app/services/chatservice.service';
   styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent implements OnInit {
+  @ViewChild('msgContainer') msgContainer: ElementRef;
+
   messageForm = new FormGroup({
     userMessage: new FormControl(''),
     botResponse: new FormControl(''),
@@ -15,7 +17,7 @@ export class ChatComponent implements OnInit {
 
   currentDate: Date;
   chatMessages: any[] = [];
-  loading: boolean = false; // Add loading state
+  loading: boolean = false;
 
   constructor(private fb: FormBuilder, private chatService: ChatserviceService) {}
 
@@ -26,36 +28,39 @@ export class ChatComponent implements OnInit {
     }, 60000);
   }
 
+  ngAfterViewChecked() {
+    this.scrollToBottom();
+  }
+
   updateCurrentDate() {
-    // Update the current date whenever needed
     this.currentDate = new Date();
   }
 
   sendMessage() {
     let userMessage = this.messageForm.get('userMessage')?.value;
-    console.log('User Message:', userMessage);
-  
-    // Convert userMessage to lowercase
     userMessage = userMessage.toLowerCase();
   
     this.chatMessages.push({ content: userMessage, senderAvatar: 'https://uifaces.co/api-key-demo', type: 'user' });
-    this.loading = true; // Set loading to true
-  
+    this.loading = true;
+
     this.chatService.sendMessage(userMessage).subscribe(
       response => {
         const botResponse = response.message;
         this.chatMessages.push({ content: botResponse, senderAvatar: 'https://uifaces.co/api-key-demo', type: 'bot' });
 
         this.messageForm.get('userMessage')?.setValue('');
-        this.loading = false; 
-        console.log(response);
+        this.loading = false;
       },
       error => {
         console.error('Error sending message:', error);
-        // Handle the error, e.g., display an error message to the user
-        this.loading = false; 
+        this.loading = false;
       }
     );
   }
-  
+
+  scrollToBottom() {
+    try {
+      this.msgContainer.nativeElement.scrollTop = this.msgContainer.nativeElement.scrollHeight;
+    } catch (err) {}
+  }
 }
