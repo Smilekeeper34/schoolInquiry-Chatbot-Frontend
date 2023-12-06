@@ -1,229 +1,225 @@
 @font-face {
-	font-family: "CastoroTitling";
-	src: url("https://s3.us-east-2.amazonaws.com/cdn.spotlessplace.com/wp-content/CastoroTitling-Regular.ttf") format("truetype");
-  }
-  
-  @font-face {
-	font-family: BraahOne;
-	src: url("https://s3.us-east-2.amazonaws.com/cdn.spotlessplace.com/wp-content/Merriweather-Regular.ttf");
-  }
-  
-  body {
-	margin: 0;
-	font-family: "CastoroTitling";
-	font-size: 12px;
-  }
-  
-  @keyframes zoom {
-	0% {
-	  transform: scale(1);
-	}
-	50% {
-	  transform: scale(1.2);
-	}
-	100% {
-	  transform: scale(1);
-	}
-  }
-  
-  #backgroundimg {
-	object-fit: cover;
-	object-position: center center;
-	width: 100%;
-	height: 100%;
-	position: fixed;
-	z-index: -1;
-	animation: zoom 20s infinite alternate;
-  }
-  
-  .main {
-	background-color: rgba(255, 255, 255, 0.04);
-	aspect-ratio: 13/16;
-	width: 500px;
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
-	border-radius: 30px;
-	backdrop-filter: blur(4px);
-	border: 1px solid rgba(255, 255, 255, 0.3);
-	overflow: hidden;
-	transition: transform 1s ease, width 1s ease;
-  
-	&:hover {
-	  width: 510px;
-	}
-  }
-  
-  .header {
-	color: #fff;
-	display: flex;
-	padding: 20px;
-	align-items: center;
-  
-	.pfp {
-	  aspect-ratio: 1;
-	  width: 40px;
-	  border-radius: 100%;
-	  cursor: pointer;
-	  transition: transform 1s ease;
-  
-	  &:hover {
-		transform: scale(1.2);
-	  }
-	}
-  
-	.center {
-	  display: flex;
-	  justify-content: center;
-	  text-align: center;
-	  width: 100%;
-  
-	  div p {
-		margin: 0;
-		font-weight: 700;
-	  }
-	}
-  
-	#pfpname {
-	  transition: letter-spacing 0.3s ease;
-  
-	  &:hover {
-		letter-spacing: 2px;
-	  }
-	}
-  
-	.notifications {
-	  background: #2796db;
-	  border-radius: 100%;
-	  aspect-ratio: 1;
-	  width: 25px;
-	  display: flex;
-	  justify-content: center;
-	  align-items: center;
-	  margin-left: 5px;
-	  cursor: pointer;
-	  transition: transform 2s ease;
-  
-	  &:hover {
-		transition: transform 2s ease;
-	  }
-	}
-  }
-  
-  .footer {
-	width: 100%;
-	height: 100px;
-	position: fixed;
-	bottom: 0;
-	display: inline-flex;
-	align-items: center;
-  }
-  
-  .text-box {
-	float: right;
-	border-radius: 100px;
-	border: 1px solid rgba(255, 255, 255, 0.6);
-	background: none;
-	padding: 8px 10px;
-	width: 100%;
-	outline: none;
-	color: #fff;
-	transition: transform 1s ease, width 1s ease;
-  
-	&:hover {
-	  width: 95%;
-	}
-  }
-  
-  .send-ico {
-	color: #fff;
-	position: absolute;
-	right: 0;
-	background: #2796db;
-	border-radius: 100%;
-	margin-right: 15px;
-	margin-top: 3px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	padding: 13px;
-	cursor: pointer;
-  }
-  
-  .text-box::placeholder {
-	color: #c6c6c6;
-	font-family: BraahOne;
-  }
-  
-  .content {
-	width: 100%;
-	bottom: 100px;
-	position: absolute;
-	height: 400px;
-	text-align: center;
-	color: #afafaf;
-	overflow: auto;
-  
-	.msg-btn {
-	  color: #fff;
-	  word-wrap: break-word;
-	  border-radius: 100px;
-	  display: inline-block;
-	  max-width: 100%;
-	  font-size: 14px;
-	  font-family: "BraahOne";
-  
-	  p {
-		padding: 10px 15px;
-		margin: 0;
-	  }
-	}
-  
-	.msg-btn-holder {
-	  padding-bottom: 30px;
-	  width: 100%;
-	  margin-top: 10px;
-	}
-  
-	// .receiver-msg {
-	//   background: #4c4c4c;
-	//   float: left;
-	// }
-  
-	// .sender-msg {
-	//   background: #2798fc;
-	//   float: right;
-	// }
-  }
-  
-  .bot-msg,
-.user-msg {
-  width: 100%; /* Make the messages take the full width */
-  clear: both; /* Clear the floating property */
-  margin-bottom: 10px; /* Add some space between messages */
+  font-family: "CastoroTitling";
+  src: url("https://s3.us-east-2.amazonaws.com/cdn.spotlessplace.com/wp-content/CastoroTitling-Regular.ttf")
+    format("truetype");
 }
 
-.bot-msg {
-  background: #4c4c4c;
-  float: left;
+@font-face {
+  font-family: BraahOne;
+  src: url("https://s3.us-east-2.amazonaws.com/cdn.spotlessplace.com/wp-content/Merriweather-Regular.ttf");
 }
 
-.user-msg {
-  background: #2798fc;
+body {
+  margin: 0;
+  font-family: "CastoroTitling";
+  font-size: 12px;
+}
+
+@keyframes zoom {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+#backgroundimg {
+  object-fit: cover;
+  object-position: center center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: -1;
+  animation: zoom 20s infinite alternate;
+}
+
+.main {
+  background-color: rgba(255, 255, 255, 0.04);
+  aspect-ratio: 13/16;
+  width: 500px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 30px;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  overflow: hidden;
+  transition: transform 1s ease, width 1s ease;
+
+  &:hover {
+    width: 510px;
+  }
+}
+
+.header {
+  color: #fff;
+  display: flex;
+  padding: 20px;
+  align-items: center;
+
+  .pfp {
+    aspect-ratio: 1;
+    width: 40px;
+    border-radius: 100%;
+    cursor: pointer;
+    transition: transform 1s ease;
+
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+
+  .center {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+
+    div p {
+      margin: 0;
+      font-weight: 700;
+    }
+  }
+
+  #pfpname {
+    transition: letter-spacing 0.3s ease;
+
+    &:hover {
+      letter-spacing: 2px;
+    }
+  }
+
+  .notifications {
+    background: #2796db;
+    border-radius: 100%;
+    aspect-ratio: 1;
+    width: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5px;
+    cursor: pointer;
+    transition: transform 2s ease;
+
+    &:hover {
+      transition: transform 2s ease;
+    }
+  }
+}
+
+.footer {
+  width: 100%;
+  height: 100px;
+  position: fixed;
+  bottom: 0;
+  display: inline-flex;
+  align-items: center;
+}
+
+.text-box {
   float: right;
+  border-radius: 100px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: none;
+  padding: 8px 10px;
+  width: 100%;
+  outline: none;
+  color: #fff;
+  transition: transform 1s ease, width 1s ease;
+
+  &:hover {
+    width: 95%;
+  }
 }
+
+.send-ico {
+  color: #fff;
+  position: absolute;
+  right: 0;
+  background: #2796db;
+  border-radius: 100%;
+  margin-right: 15px;
+  margin-top: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 13px;
+  cursor: pointer;
+}
+
+.text-box::placeholder {
+  color: #c6c6c6;
+  font-family: BraahOne;
+}
+
+.content {
+  width: 100%;
+  bottom: 100px;
+  position: absolute;
+  height: 400px;
+  text-align: center;
+  color: #afafaf;
+  overflow: auto;
+
+  .msg-btn-holder {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .bot-msg,
+  .user-msg {
+    width: 70%; /* Limit the width of the message */
+    font-size: 14px;
+    font-family: "BraahOne";
+    margin-bottom: 10px;
+    border-radius: 10px;
+    display: inline-block;
+    clear: both; /* Clear float */
+    padding: 10px 15px;
+  }
+
+  .bot-msg {
+    background: #4c4c4c;
+    color: #fff;
+    float: left;
+  }
+
+  .user-msg {
+	width: auto;
+    background: #2798fc;
+    color: #fff;
+    float: right;
+    margin-left: auto; /* Push the user message to the right */
+  }
+}
+
+/* Add this class to clear the float after each message */
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
 .loader {
-	border: 4px solid #f3f3f3;
-	border-top: 4px solid #3498db;
-	border-radius: 50%;
-	width: 20px;
-	height: 20px;
-	animation: spin 1s linear infinite;
-	margin-left: 10px; /* Adjust the margin as needed */
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+  margin-left: 10px; /* Adjust the margin as needed */
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
   }
-  
-  @keyframes spin {
-	0% { transform: rotate(0deg); }
-	100% { transform: rotate(360deg); }
+  100% {
+    transform: rotate(360deg);
   }
+}

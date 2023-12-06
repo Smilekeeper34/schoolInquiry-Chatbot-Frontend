@@ -1,6 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ChatserviceService } from 'src/app/services/chatservice.service';
+import { DomSanitizer } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-chat',
@@ -19,7 +21,7 @@ export class ChatComponent implements OnInit {
   chatMessages: any[] = [];
   loading: boolean = false;
 
-  constructor(private fb: FormBuilder, private chatService: ChatserviceService) {}
+  constructor(private fb: FormBuilder, private chatService: ChatserviceService, private sanitizer: DomSanitizer) {}
 
   ngOnInit() {
     this.updateCurrentDate();
@@ -42,12 +44,16 @@ export class ChatComponent implements OnInit {
   
     this.chatMessages.push({ content: userMessage, senderAvatar: 'https://uifaces.co/api-key-demo', type: 'user' });
     this.loading = true;
-
+  
     this.chatService.sendMessage(userMessage).subscribe(
       response => {
         const botResponse = response.message;
-        this.chatMessages.push({ content: botResponse, senderAvatar: 'https://uifaces.co/api-key-demo', type: 'bot' });
-
+        this.chatMessages.push({
+          content: this.sanitizer.bypassSecurityTrustHtml(botResponse),
+          senderAvatar: 'https://uifaces.co/api-key-demo',
+          type: 'bot'
+        });
+  
         this.messageForm.get('userMessage')?.setValue('');
         this.loading = false;
       },
@@ -56,6 +62,13 @@ export class ChatComponent implements OnInit {
         this.loading = false;
       }
     );
+  }
+  
+
+  // Function to modify the bot response
+  modifyBotResponse(originalResponse: string): string {
+    
+    return originalResponse.replace(/\n/g, '<br>');
   }
 
   scrollToBottom() {
